@@ -22,7 +22,8 @@
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"        
         Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily="{DynamicResource MaterialDesignFont}" ResizeMode="NoResize"
+        FontFamily="{DynamicResource MaterialDesignFont}" 
+        ResizeMode="NoResize"
         
         MouseDown="MoveWidow"
 >
@@ -37,53 +38,68 @@
             </Button>
         </Canvas>
 
-        <Canvas Width="260" Height="60" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,0,640">
+        <Canvas 
+            Width="260" Height="60" HorizontalAlignment="Left" 
+            VerticalAlignment="Bottom" Margin="0,0,0,640">
             <Button Padding="0"
                     Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
                     Width="40" Height="40" HorizontalAlignment="Left" 
                     Canvas.Left="20" Canvas.Top="10">
-                <materialDesign:PackIcon Kind="Account" HorizontalAlignment="Right" Width="40" Height="40"/>
+                <materialDesign:PackIcon Kind="Account" HorizontalAlignment="Right" 
+                    Width="40" Height="40"/>
             </Button>
 
-            <TextBlock Style="{StaticResource MaterialDesignTitleTextBlock}" Canvas.Left="82" Canvas.Top="20" Width="120" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center"><Run Text="Hi, JCases."/></TextBlock>
+            <TextBlock Style="{StaticResource MaterialDesignTitleTextBlock}"
+                Canvas.Left="82" Canvas.Top="20" Width="120" Height="30" 
+                HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Run Text="Hi, JCases."/>
+            </TextBlock>
         </Canvas>
 
-        <Canvas  
+        <Canvas
             Background="{DynamicResource SecondaryAccentBrush}" 
             Width="60" HorizontalAlignment="Left" Height="640" VerticalAlignment="Bottom">
             <Button Padding="0"
-                    Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                    Width="60" Height="60" HorizontalAlignment="Left" Background="{x:Null}" BorderBrush="{x:Null}" Canvas.Top="4">
-                <materialDesign:PackIcon Kind="TelevisionGuide" HorizontalAlignment="Right" Width="40" Height="40"/>
+                Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                Width="60" Height="60" HorizontalAlignment="Left" 
+                Background="{x:Null}" BorderBrush="{x:Null}" Canvas.Top="4">
+                <materialDesign:PackIcon Kind="TelevisionGuide" 
+                    HorizontalAlignment="Right" Width="40" Height="40"/>
             </Button>
         </Canvas>
 
-        <Canvas Background="{DynamicResource PrimaryHueDarkBrush}" Width="200" Height="580" 
+        <Canvas Background="{DynamicResource PrimaryHueDarkBrush}" Width="180" Height="580" 
                 HorizontalAlignment="Left" Margin="60,0,0,60" VerticalAlignment="Bottom">
             <TextBlock Canvas.Left="20" Canvas.Top="24" Style="{StaticResource MaterialDesignTitleTextBlock}">TV</TextBlock>
-            <Button Content="PÚBLICAS" Canvas.Left="0" Canvas.Top="72.5" Width="200" 
+            <Button Content="PÚBLICAS" Canvas.Left="0" Canvas.Top="72.5" Width="180" 
                 Style="{StaticResource MaterialDesignRaisedDarkButton}" Height="72.5"
                     Click="Start" Background="{x:Null}" BorderBrush="{x:Null}"/>
-            <Button Content="PRIVADAS" Canvas.Left="0" Canvas.Top="145" Width="200" 
+            <Button Content="PRIVADAS" Canvas.Left="0" Canvas.Top="145" Width="180" 
                 Style="{StaticResource MaterialDesignRaisedDarkButton}" Height="72.5" Background="{x:Null}" BorderBrush="{x:Null}"/>
-            <Button Content="SERIES" Canvas.Left="0" Canvas.Top="217.5" Width="200" 
+            <Button Content="SERIES" Canvas.Left="0" Canvas.Top="217.5" Width="180" 
                 Style="{StaticResource MaterialDesignRaisedDarkButton}" Height="72.5" Background="{x:Null}" BorderBrush="{x:Null}"/>
-            <Button Content="PELÍCULAS" Canvas.Left="0" Canvas.Top="290" Width="200" 
+            <Button Content="PELÍCULAS" Canvas.Left="0" Canvas.Top="290" Width="180" 
                 Style="{StaticResource MaterialDesignRaisedDarkButton}" Height="72.5" Background="{x:Null}" BorderBrush="{x:Null}"/>
-            <Button Content="DEPORTES" Canvas.Left="0" Canvas.Top="362.5" Width="200" 
+            <Button Content="DEPORTES" Canvas.Left="0" Canvas.Top="362.5" Width="180" 
                 Style="{StaticResource MaterialDesignRaisedDarkButton}" Height="72.5" Background="{x:Null}" BorderBrush="{x:Null}"/>
-            <Button Content="INFANTILES" Canvas.Left="0" Canvas.Top="435" Width="200" 
+            <Button Content="INFANTILES" Canvas.Left="0" Canvas.Top="435" Width="180" 
                 Style="{StaticResource MaterialDesignRaisedDarkButton}" Height="72.5" Background="{x:Null}" BorderBrush="{x:Null}"/>
 
 
 
         </Canvas>
 
-        <Canvas Height="580" Width="1020" HorizontalAlignment="Right" Margin="0,0,0,60" VerticalAlignment="Bottom" Background="Black">
-            <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}" Canvas.Left="20" Width="140" Height="30" Canvas.Top="-44"><Run Text="CHANNELS"/></TextBlock>
-            <WrapPanel Height="550" Canvas.Left="0" Canvas.Top="30" Width="1020">
-            </WrapPanel>
-            <WindowsFormsHost Height="580" Width="1020" x:Name="vlcPlayer" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Canvas Height="580" Width="1040" HorizontalAlignment="Right" Margin="0,0,0,60" VerticalAlignment="Bottom">
+            <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}" 
+                Canvas.Left="20" Width="140" Height="30" Canvas.Top="-44">
+                    <Run Text="CHANNELS"/>
+            </TextBlock>
+            <ListBox x:Name="ListChannels" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+            </ListBox>
+            <Canvas x:Name="bckgrndPlayer" Height="580" Width="1040" Background="Black" Visibility="Hidden">
+                <WindowsFormsHost Background="Black" Height="580" Width="1040" 
+                    x:Name="vlcPlayer" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Canvas>
         </Canvas>
 
         <Canvas Height="60" Width="1180" VerticalAlignment="Bottom" HorizontalAlignment="Right">

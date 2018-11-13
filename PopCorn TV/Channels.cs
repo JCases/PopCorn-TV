@@ -20,12 +20,12 @@ namespace PopCorn_TV
         public static List<ChannelInfo> tvChannels;
 
         public static bool importError = false;
-        public static int channelError;
+        public static int channelErrors;
 
         public static void Load()
         {
             // Reset Channels Errors
-            channelError = 0;
+            channelErrors = 0;
 
             try
             {    
@@ -40,8 +40,6 @@ namespace PopCorn_TV
 
                     string line = reader.ReadLine();
 
-                    
-
                     while (line != null)
                     {
                         ChannelInfo channel = new ChannelInfo();
@@ -54,15 +52,15 @@ namespace PopCorn_TV
 
                             // Verify data
 
-                            channel.name = SaveChannel(matches[1].Value);
-                            
-                            channel.urlLogo = SaveChannel(matches[2].Value);
+                            channel.name = matches[1].Value.Replace("\"", "").ToUpper();
 
-                            channel.country = SaveChannel(matches[3].Value);
+                            channel.urlLogo = matches[2].Value.Replace("\"", "").ToUpper();
+
+                            channel.country = matches[3].Value.Replace("\"", "").ToUpper();
                         }
                         else
                         {
-                            channelError++;
+                            channelErrors++;
                             importError = true;
                         }
 
@@ -73,19 +71,13 @@ namespace PopCorn_TV
                         {
                             channel.urlStream = line.ToLower();
                             tvChannels.Add(channel);
-
-                            MessageBox.Show(channel.name + " " + channel.country
-                                + " " + channel.urlStream);
                         }
                         else if (!importError)
-                            channelError++;
+                            channelErrors++;
 
                         importError = false;
                         line = reader.ReadLine();
                     }
-
-                    MessageBox.Show("Import error in " + channelError + 
-                        " channels.", "Error!");
 
                     reader.Close();
                 }
@@ -104,18 +96,6 @@ namespace PopCorn_TV
             {
                 MessageBox.Show("Channels could not be preloaded. " +
                     "Restart the application. More Info: " + e.Message, "Error!");
-            }
-        }
-
-        private static string SaveChannel(string data)
-        {
-            if (data.Replace("\"", "").Length > 0)
-                return data.Replace("\"", "").ToUpper();
-            else
-            {
-                importError = true;
-                channelError++;
-                return null;
             }
         }
     }

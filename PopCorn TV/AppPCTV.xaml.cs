@@ -3,6 +3,7 @@ using System.Windows.Input;
 using AXVLC;
 using AxAXVLC;
 using System.Windows.Threading;
+using System.Collections.Generic;
 
 namespace PopCorn_TV
 {
@@ -12,11 +13,14 @@ namespace PopCorn_TV
     public partial class AppPCTV : Window
     {
         public AxVLCPlugin2 vlc;
+        public static List<ChannelInfo> tvChannels;
 
         public bool IsPlaying;
         public AppPCTV()
         {
             InitializeComponent();
+
+            ChargeChannels();
 
             // Create Player
             vlc = new AxVLCPlugin2();
@@ -31,11 +35,19 @@ namespace PopCorn_TV
 
         ~AppPCTV() { }
 
+        private void ChargeChannels()
+        {
+            for (int i = 0; i < Channels.tvChannels.Count; i++)
+                ListChannels.Items.Add(Channels.tvChannels[i].name);
+        }
+
         private void Start(object sender, RoutedEventArgs e)
         {
             if (!IsPlaying)
             {
-                vlc.playlist.add("http://xtremservices.com:8000/live/Planion/KFTkQnNoNk/4097.ts");
+                bckgrndPlayer.Visibility = Visibility.Visible;
+
+                vlc.playlist.add("http://xtremservices.com:8000/live/Planion/KFTkQnNoNk/3870.ts");
 
                 vlc.playlist.play();
 
